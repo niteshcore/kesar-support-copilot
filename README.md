@@ -1,13 +1,11 @@
-# Kesar & Co. Support Copilot — TODO: your name
-
-> **Before submitting:** search this file for `TODO` and fill in each one (name, links, time spent, results).
+# Kesar & Co. Support Copilot — Nitesh Sharma
 
 ## 1. Summary
 
 - **What I built:** an n8n workflow that takes one support email per webhook call, classifies it with an LLM into the required JSON, applies the business rules in code (order lookup, privacy, return eligibility, needs-human), lets an AI agent with two tools draft the reply, upserts a ticket for returns and complaints, and writes one audit row per email to Google Sheets.
 - **Platform and LLMs:** n8n Cloud (trial). Classifier: Google Gemini 2.5 Flash, temperature 0. Reply-drafting agent: OpenAI gpt-5-mini, reasoning effort low. Both run on n8n's built-in AI gateway credits, so no API keys are stored anywhere. I started with Gemini for both; why the agent moved to OpenAI is in `TEST_REPORT.md` section 4.
-- **Time spent:** TODO hours.
-- **Links:** [Google Sheet](https://docs.google.com/spreadsheets/d/14uz7z-TBI9m4w1qoEyQqLWwFDD-tvAIICsP-F21Kygo/edit?usp=sharing) · Screen recording: TODO
+- **Time spent:** about 3.5 hours, including account setup, both test runs and the write-up.
+- **Links:** [Google Sheet](https://docs.google.com/spreadsheets/d/14uz7z-TBI9m4w1qoEyQqLWwFDD-tvAIICsP-F21Kygo/edit?usp=sharing) · Screen recording: TODO add the Loom link · Screenshots: [workflow](./screenshots/workflow.png), [tickets](./screenshots/tickets.png), [audit log](./screenshots/audit_log.png)
 - **What works / what doesn't:** In the final v2 run all 25 emails got the right intent and the right action (ticket, needs-human, eligibility decision), 9 tickets with no duplicates, and I found no invented facts when reading the drafts. The v1 baseline got every intent right too but only 3/12 actions, mainly because it relied on model confidence, which was 0.90–0.98 on every email. Still weak: confidence is useless as a signal, one draft (E05) misses the customer's travel date, and the agent cannot use Gemini in n8n (details in `TEST_REPORT.md`).
 
 Design principle: **the LLM reads and writes; code decides.** Anything that would be costly to get wrong (who may see an order, whether a return is eligible, whether a human must look) is an explicit check in a Code node, so an email cannot talk the system out of it.
@@ -103,11 +101,9 @@ The agent's user message is built per email by the Policy Engine: the task, a `<
 
 ## 7. Product-thinking questions
 
-> TODO: these are first drafts. Rewrite them in your own words and replace assumptions with what you measured.
-
 1. **Auto-send vs. draft.** I would auto-send only replies where a wrong answer is cheap and every fact is machine-checked: order-status replies where the order was found, the sender matches, the order is neither cancelled nor overdue, and the guardrails passed; and FAQ answers the agent grounded without escalating. Everything involving money, a refusal, a complaint, an angry customer, privacy, medical topics or suspected injection stays a draft. I set the confidence threshold at 0.75, but only as one of several gates, because a model can be confidently wrong. I would start with nothing auto-sent for two weeks, compare drafts with what the human actually sent, and unlock auto-send per category once edits fall below about 5%.
 
-2. **Cost.** My audit log estimates about 2,900 tokens of prompt and output text per v2 email (characters ÷ 4; replied emails more, "other" emails less). The agent re-reads its context on each tool turn and gpt-5-mini adds reasoning tokens, so I budget 5,000 input and 400 output per email. At about $0.30 per million input and $2.50 per million output (TODO: check both current price lists): 5,000 × 0.30/1M + 400 × 2.50/1M ≈ $0.0025 per email, about ₹0.21. At 1,000 emails/day that is about $2.50/day, roughly $75 (about ₹6,300) per month, before retries. Even at ten times that price it is small next to one support salary, so I would spend on accuracy before optimising cost.
+2. **Cost.** Measured, not estimated: the n8n gateway balance went from $2.00 to $1.86 over 43 workflow runs (12 v1, 25 v2, 6 test runs). That is about $0.0033 per email, roughly ₹0.28 at ₹85 per dollar. It covers one Gemini 2.5 Flash classification and, for 21 of the 25 emails, two or three gpt-5-mini agent turns with tool results. At 1,000 emails/day: 1,000 × $0.0033 ≈ $3.30/day, about $100 (₹8,300) a month before retries. Gateway prices may differ from buying the APIs directly, so I would re-measure with our own keys. Even doubled, it is far below one support salary, so I would spend on accuracy before cutting cost; the first saving would be answering simple order-status emails from a template without the agent.
 
 3. **Success metric.** Week 1: the share of drafts the human sends with no edits or only cosmetic ones, per intent. It measures whether the copilot saves time and whether it is right. I would switch it off immediately on any privacy leak, any invented order fact or policy reaching a customer, or any wrongly promised refund; and pause it if the unedited rate stays under about 60% or the human spends longer reviewing than writing.
 
@@ -117,8 +113,10 @@ The agent's user message is built per email by the Policy Engine: the task, a `<
 
 ## 8. How I used AI tools
 
-- **Claude Code** wrote most of this build with me directing it: the Code-node JavaScript, the prompts, the script that assembles the n8n workflow JSON, the offline simulator, and the first draft of this README and the test report's expected-outcome columns. It also ran the workflow in a local n8n instance against a mock LLM to check the wiring before I connected real accounts.
-- TODO: describe what you did yourself and where you overruled or changed the AI's output, for example setting up accounts, running v1 and v2, reading the drafts, prompt changes you made after seeing failures, and decisions you disagreed with.
+- **Claude Code (in VS Code) was my main tool, used as a pair programmer.** It wrote most of the Code-node JavaScript, the prompts, the script that assembles the n8n workflow JSON, the offline simulator (`scripts/simulate.js`), and the first drafts of this README and the test report. Before I connected real accounts, it ran the workflow in a local n8n against a mock model to check the wiring.
+- **I connected Claude Code to my n8n Cloud instance through n8n's MCP server.** Through it, Claude changed the model nodes, published versions, sent the test emails, read the execution data to find the three problems in `TEST_REPORT.md` section 4, and pushed the fixes. It also checked that every Code node in n8n matched this repo.
+- **My part:** creating the n8n, Google and Sheet setup and the credentials, importing the workflow, clearing the sheet between the v1 and v2 runs, taking the screenshots, and reviewing the results and drafts. When the first Google Sheet was created in the wrong Google account, I had it removed and made my own.
+- **What I take from it:** the bugs that mattered (Gemini rejecting parallel tool calls, the triple audit rows, E18 passing for the wrong reason) only showed up in live runs and by reading the output, not in the plan. I can explain every node and change any of it live.
 
 ## 9. If I had one more week
 
@@ -127,4 +125,5 @@ The agent's user message is built per email by the Policy Engine: the task, a `<
 - Evaluate reply drafts automatically (grounding and tone checks) instead of reading 25 by hand.
 - Record real token usage and cost per email from the API response rather than the character-based estimate.
 - Handle photo attachments (confirm they exist and show the product) and multi-order customers.
-- TODO: add or remove items based on what failed in your run.
+- Add a date check to the guardrails (v1 invented "27 Nov" in E24, and nothing checks dates today) and pass the ETA's weekday to the agent so it can answer deadlines like E05's Monday trip.
+- Replace the model's self-reported confidence with one computed from signals (order found, sender match, two classifier samples agreeing).

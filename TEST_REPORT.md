@@ -1,6 +1,6 @@
 # Test Report — Kesar & Co. Support Copilot
 
-**Candidate name:** TODO
+**Candidate name:** Nitesh Sharma
 **Platform used:** n8n Cloud (trial)
 **LLM(s) used:** Google Gemini 2.5 Flash for classification (temperature 0); OpenAI gpt-5-mini for the drafting agent (reasoning effort low). Both through n8n Cloud gateway credits.
 
@@ -65,11 +65,11 @@ v2 result: **9 tickets** (E04 and E21 share `TKT-1052-E04`, all complaints High)
 | Valid JSON on first try (x / *n*) | 0 / 12 | 25 / 25 |
 | Emails sent to "needs human" | 0 | 13 |
 | Avg. tokens per email (approx, chars/4) | 1,371 | 2,888 |
-| Est. cost per email (₹ or $) | TODO | TODO |
+| Est. cost per email (₹ or $) | ≈ $0.0033 / ₹0.28 (all runs together) | ≈ $0.0033 / ₹0.28 (all runs together) |
 
 - Intent was never the problem: both versions got every intent right. The gap is entirely in what happens after classification.
 - v1's JSON was never valid on the first try because the model wrapped it in a code fence; the code validator stripped it every time, so no email failed and no LLM repair call was needed.
-- Cost: TODO. The n8n Gateway credits started at $2.00; read the remaining balance on the `Gemini (classifier)` node and divide what was spent by the number of runs (43 workflow executions in total, including the first test runs). The token column is a characters-÷-4 estimate, not API usage.
+- Cost is measured from the n8n gateway balance: $2.00 before, $1.86 after, so $0.14 for 43 workflow executions (12 v1, 25 v2, 6 test runs) ≈ $0.0033 per email (₹0.28 at ₹85/$). The balance is shared, so v1 and v2 cannot be separated; v2 costs somewhat more per email because its prompts are longer. The token column is a characters-÷-4 estimate, not API usage.
 
 ## 4. What I changed from v1 to v2, and why
 
