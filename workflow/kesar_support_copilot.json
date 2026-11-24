@@ -185,7 +185,7 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-flash-latest",
+        "modelName": "models/gemini-2.5-flash",
         "options": {
           "temperature": 0,
           "maxOutputTokens": 2048
@@ -463,16 +463,19 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-flash-latest",
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
         "options": {
-          "temperature": 0.3,
-          "maxOutputTokens": 2048
+          "reasoningEffort": "low"
         }
       },
-      "id": "fcb388de-40c6-4b18-a25c-8fc7742021ed",
-      "name": "Gemini (agent)",
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
+      "id": "8885a8ac-7690-4303-ada9-e9b7bde2beed",
+      "name": "OpenAI (agent)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
       "position": [
         3180,
         420
@@ -688,10 +691,7 @@
       "position": [
         5060,
         300
-      ],
-      "retryOnFail": true,
-      "maxTries": 3,
-      "waitBetweenTries": 5000
+      ]
     },
     {
       "parameters": {
@@ -1053,7 +1053,7 @@
         ]
       ]
     },
-    "Gemini (agent)": {
+    "OpenAI (agent)": {
       "ai_languageModel": [
         [
           {

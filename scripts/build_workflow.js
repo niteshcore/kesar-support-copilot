@@ -95,7 +95,7 @@ const chain = (name, pos, textKey, sysKey) =>
   );
 const gemini = (name, pos, temperature) =>
   add(name, '@n8n/n8n-nodes-langchain.lmChatGoogleGemini', 1, pos, {
-    modelName: 'models/gemini-flash-latest',
+    modelName: 'models/gemini-2.5-flash',
     options: { temperature, maxOutputTokens: 2048 },
   });
 
@@ -137,7 +137,12 @@ add(
   },
   Object.assign({ onError: 'continueRegularOutput' }, RETRY)
 );
-gemini('Gemini (agent)', [3180, 420], 0.3);
+// Drafting runs on OpenAI: with Gemini, n8n's agent fails (400 "number of function response parts")
+// whenever the model calls get_order and search_faq in the same turn.
+add('OpenAI (agent)', '@n8n/n8n-nodes-langchain.lmChatOpenAi', 1.3, [3180, 420], {
+  model: { __rl: true, mode: 'list', value: 'gpt-5-mini' },
+  options: { reasoningEffort: 'low' },
+});
 const tool = (name, file, pos, description, schema) =>
   add(name, '@n8n/n8n-nodes-langchain.toolCode', 1.3, pos, {
     description,
@@ -194,8 +199,8 @@ add(
   Object.assign({ resource: 'sheet', operation: 'append' }, sheetRef('Audit Log'), {
     columns: { mappingMode: 'autoMapInputData', value: {}, matchingColumns: [], schema: [] },
     options: { cellFormat: 'RAW', handlingExtraData: 'insertInNewColumn' },
-  }),
-  RETRY
+  })
+  // No Retry On Fail here: an append is not idempotent, and with retries on, every run wrote the row three times.
 );
 
 // ---------- wiring ----------
@@ -217,7 +222,7 @@ link('Upsert Ticket', 'Build Audit Row');
 link('Build Audit Row', 'Append Audit Log');
 link('Gemini (classifier)', 'Classify Email', 0, 'ai_languageModel');
 link('Gemini (classifier)', 'Repair Classification', 0, 'ai_languageModel');
-link('Gemini (agent)', 'Draft Reply (AI Agent)', 0, 'ai_languageModel');
+link('OpenAI (agent)', 'Draft Reply (AI Agent)', 0, 'ai_languageModel');
 link('get_order', 'Draft Reply (AI Agent)', 0, 'ai_tool');
 link('search_faq', 'Draft Reply (AI Agent)', 0, 'ai_tool');
 

@@ -5,7 +5,7 @@
 
 **Candidate name:** TODO
 **Platform used:** n8n (TODO: Cloud / self-hosted, version)
-**LLM(s) used:** Google Gemini, TODO: exact model ID, for both classification (temperature 0) and drafting (temperature 0.3)
+**LLM(s) used:** Google Gemini 2.5 Flash for classification (temperature 0); OpenAI gpt-5-mini for the drafting agent (reasoning effort low). Both through n8n Cloud gateway credits.
 
 ---
 
@@ -78,6 +78,11 @@ These are the design differences between the two versions in this repo (`PROMPT_
 - **Change 4 — output guardrails.** v2 checks every draft for links, amounts and order IDs that are not in the data, for "refund approved" wording, and for leaked order details. v1 logs the draft as written.
 - **Change 5 — stricter agent prompt.** v2 adds the hard rules, the system-facts block, the reply language and the `[NEEDS_HUMAN]` escape hatch.
 
+Found in the first live run on n8n Cloud (E01, E07, E12), before the v1/v2 runs, and fixed for both versions:
+
+- **Agent model switched from Gemini to OpenAI.** With Gemini 2.5 Flash as the agent's model, E12 failed with `400 Please ensure that the number of function response parts is equal to the number of function call parts`. Gemini called `get_order` and `search_faq` in the same turn, and n8n's agent sent the two tool results back in a form Gemini rejects. E01 had worked only because it needed one tool. A prompt rule ("one tool at a time") would not be reliable, so the agent now uses gpt-5-mini, which handles parallel tool calls; the classifier stays on Gemini. Re-running E12 gave a correct refusal with both tools called.
+- **Retry turned off on the audit-log append.** With Retry On Fail on, every email produced three identical audit rows and the node took about 13 seconds; with it off, one row in about 1 second. I could not see the underlying error because n8n keeps only the final attempt. An append is not idempotent, so it should not be retried blindly anyway. The ticket upsert keeps its retry, because it matches on `ticket_id` and a repeat only rewrites the same row.
+
 The privacy check inside `get_order` and ticket de-duplication are the same in both versions; I did not want a version that could leak an order, even as a baseline.
 
 ## 5. Failures I could not fix (be honest)
@@ -90,7 +95,7 @@ TODO: fill this from your real run. One row per email that is still wrong in v2.
 
 Known limits of the design, independent of any run:
 
-- **Not tested with a real LLM by the build itself.** The wiring was verified in a local n8n against a mock Gemini server, and the rules by `scripts/simulate.js`. Classification accuracy and draft quality are only known from the runs recorded above.
+- **How the build was checked.** The rules are covered by `scripts/simulate.js` (20 checks, no LLM). The wiring was first run in a local n8n against a mock model server, then on n8n Cloud with the real models. Classification accuracy and draft quality are only known from the runs recorded above.
 - **Dates in drafts are not verified.** The guardrail checks links, amounts and order IDs, but a wrong date written by the model would pass.
 - **The medical-wording check is a keyword match.** It flags correct disclaimers too ("not intended to treat"), so it over-escalates.
 - **Photos are not inspected.** An image attachment counts as "photos provided" whatever it shows.

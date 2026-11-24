@@ -5,7 +5,7 @@
 ## 1. Summary
 
 - **What I built:** an n8n workflow that takes one support email per webhook call, classifies it with an LLM into the required JSON, applies the business rules in code (order lookup, privacy, return eligibility, needs-human), lets an AI agent with two tools draft the reply, upserts a ticket for returns and complaints, and writes one audit row per email to Google Sheets.
-- **Platform and LLM:** n8n (TODO: Cloud trial / self-hosted, version) with Google Gemini Flash through the AI Studio free tier (TODO: exact model ID you selected). Classifier temperature 0, agent temperature 0.3.
+- **Platform and LLMs:** n8n Cloud (trial). Classifier: Google Gemini 2.5 Flash, temperature 0. Reply-drafting agent: OpenAI gpt-5-mini, reasoning effort low. Both run on n8n's built-in AI gateway credits, so no API keys are stored anywhere. I started with Gemini for both; why the agent moved to OpenAI is in `TEST_REPORT.md` section 4.
 - **Time spent:** TODO hours.
 - **Links:** [Google Sheet](https://docs.google.com/spreadsheets/d/14uz7z-TBI9m4w1qoEyQqLWwFDD-tvAIICsP-F21Kygo/edit?usp=sharing) · Screen recording: TODO
 - **What works / what doesn't:** TODO: 3–4 honest lines after your v2 run, taken from `TEST_REPORT.md` sections 3 and 5.
@@ -33,7 +33,7 @@ Webhook → Config → Fetch Orders / FAQ / Brand Voice → Prepare Email
 | Config | Prompt version (`v1`/`v2`), confidence threshold, Google Sheet ID, data URLs | One place to switch versions and thresholds; nothing secret lives here. |
 | Fetch Orders / FAQ / Brand Voice | HTTP GET of the three data files | Treats them as external APIs; a policy change in `faq.md` needs no workflow edit. |
 | Prepare Email | Normalises the payload, finds `KC-####` IDs by regex, flags prompt-injection patterns and photo attachments, builds the classifier prompt | Cheap deterministic signals that later checks can trust more than model output. |
-| Classify Email | Gemini returns the JSON from `schemas/llm_output.schema.json` plus extra fields (`issue_type`, `product_condition`, `medical_question`, …) | The extra fields give the rule engine the facts it needs without a second LLM call. |
+| Classify Email | Gemini 2.5 Flash returns the JSON from `schemas/llm_output.schema.json` plus extra fields (`issue_type`, `product_condition`, `medical_question`, …) | The extra fields give the rule engine the facts it needs without a second LLM call. |
 | Validate Classification → Repair → Validate Repair | Parses, repairs formatting slips in code, validates every field against the schema; if still invalid asks the LLM once to fix it; if that fails, falls back to `other`, confidence 0, needs human | Three layers (repair, retry, fall back) so the pipeline never stops on bad JSON and never guesses an intent. |
 | Policy Engine | Order lookup (by ID, else by sender email), privacy check, days since delivery from `received_at`, return/defect eligibility, needs-human reasons, ticket priority, and the brief for the agent | Hard rules in code. The agent is told the decision; it only words it. |
 | Route by Intent | Five outputs. Four go to the agent, `other` skips it | `other` needs no customer reply, so it costs no agent call. |
@@ -48,13 +48,13 @@ Sheet writes use raw cell format, so text from an email can never be interpreted
 
 1. **Accounts / credentials (no keys in this repo):**
    - n8n (Cloud trial or `npx n8n`).
-   - Google AI Studio API key → n8n credential type *Google Gemini(PaLM) Api*.
+   - LLMs: on n8n Cloud, the Gemini and OpenAI model nodes can use n8n's "Gateway credits" with no key. Elsewhere, create a *Google Gemini(PaLM) Api* credential (AI Studio key) and an *OpenAI* credential.
    - Google account → n8n credential type *Google Sheets OAuth2*.
 2. **Google Sheet:** create a sheet named `Kesar Support` with two tabs, `Audit Log` and `Tickets`. Import `templates/audit_log_headers.csv` and `templates/tickets_headers.csv` as their header rows (the assignment's columns, plus my extra audit columns at the end).
 3. **Import the workflow:** n8n → Workflows → Import from File → `workflow/kesar_support_copilot.json`.
 4. **Configure:**
    - `Config` node: paste the Google Sheet ID (the part of the sheet URL between `/d/` and `/edit`) into `GOOGLE_SHEET_ID`.
-   - `Gemini (classifier)` and `Gemini (agent)`: select the Gemini credential, then pick a current Flash model from the model dropdown.
+   - `Gemini (classifier)` and `OpenAI (agent)`: select Gateway credits (or your own credential). If a model is not offered, pick the closest current Flash / mini model.
    - `Read Tickets`, `Upsert Ticket`, `Append Audit Log`: select the Google Sheets credential.
 5. **Run the 25 test emails:** activate (publish) the workflow, copy the Webhook node's production URL, then:
    ```bash
@@ -71,9 +71,9 @@ All prompts are in [`prompts/`](./prompts) and are embedded into the workflow by
 
 | Prompt | File | Model settings |
 |---|---|---|
-| Classifier v2 (final) | [`classifier_v2.md`](./prompts/classifier_v2.md) | temperature 0, max output 2048 tokens |
+| Classifier v2 (final) | [`classifier_v2.md`](./prompts/classifier_v2.md) | Gemini 2.5 Flash, temperature 0, max output 2048 tokens |
 | Classifier repair | [`classifier_repair.md`](./prompts/classifier_repair.md) | same model |
-| Agent system v2 (final) | [`agent_system_v2.md`](./prompts/agent_system_v2.md), with `brand_voice.md` inserted at run time | temperature 0.3, max 6 iterations |
+| Agent system v2 (final) | [`agent_system_v2.md`](./prompts/agent_system_v2.md), with `brand_voice.md` inserted at run time | OpenAI gpt-5-mini, reasoning effort low, max 6 iterations |
 | Classifier v1 / Agent v1 (baseline) | [`classifier_v1.md`](./prompts/classifier_v1.md), [`agent_system_v1.md`](./prompts/agent_system_v1.md) | same settings |
 
 The agent's user message is built per email by the Policy Engine: the task, a `<system_facts>` block (received date, reply language, order-check result, days since delivery, the eligibility decision) and the email inside `<email>` tags marked as untrusted.
@@ -107,7 +107,7 @@ The agent's user message is built per email by the Policy Engine: the task, a `<
 
 1. **Auto-send vs. draft.** I would auto-send only replies where a wrong answer is cheap and every fact is machine-checked: order-status replies where the order was found, the sender matches, the order is neither cancelled nor overdue, and the guardrails passed; and FAQ answers the agent grounded without escalating. Everything involving money, a refusal, a complaint, an angry customer, privacy, medical topics or suspected injection stays a draft. I set the confidence threshold at 0.75, but only as one of several gates, because a model can be confidently wrong. I would start with nothing auto-sent for two weeks, compare drafts with what the human actually sent, and unlock auto-send per category once edits fall below about 5%.
 
-2. **Cost.** A replied email uses about 5,000 input and 400 output tokens (one classifier call, two agent turns with tool results); "other" emails use about 1,300. TODO: confirm with the `approx_tokens` column. Assuming Flash-class pricing of $0.30 per million input and $2.50 per million output tokens (TODO: check the current price list): 5,000 × 0.30/1M + 400 × 2.50/1M ≈ $0.0025 per email, about ₹0.21. At 1,000 emails/day that is about $2.50/day, roughly $75 (about ₹6,300) per month, before retries. Even at ten times that price it is small next to one support salary, so I would spend on accuracy before optimising cost.
+2. **Cost.** A replied email uses about 5,000 input and 400 output tokens (one classifier call, two agent turns with tool results); "other" emails use about 1,300. TODO: confirm with the `approx_tokens` column. Assuming small-model pricing of about $0.30 per million input and $2.50 per million output tokens for Gemini 2.5 Flash and gpt-5-mini alike (TODO: check both current price lists; gpt-5-mini also bills reasoning tokens as output): 5,000 × 0.30/1M + 400 × 2.50/1M ≈ $0.0025 per email, about ₹0.21. At 1,000 emails/day that is about $2.50/day, roughly $75 (about ₹6,300) per month, before retries. Even at ten times that price it is small next to one support salary, so I would spend on accuracy before optimising cost.
 
 3. **Success metric.** Week 1: the share of drafts the human sends with no edits or only cosmetic ones, per intent. It measures whether the copilot saves time and whether it is right. I would switch it off immediately on any privacy leak, any invented order fact or policy reaching a customer, or any wrongly promised refund; and pause it if the unedited rate stays under about 60% or the human spends longer reviewing than writing.
 
