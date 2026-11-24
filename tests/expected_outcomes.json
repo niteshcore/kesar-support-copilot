@@ -1,0 +1,177 @@
+{
+  "E01": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "draft_reply"
+  },
+  "E02": {
+    "intent": "product_query",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "draft_reply"
+  },
+  "E03": {
+    "intent": "return_refund",
+    "decision": "RETURN_ELIGIBLE",
+    "needs_human": false,
+    "ticket": true,
+    "action": "ticket_created + draft_reply"
+  },
+  "E04": {
+    "intent": "complaint",
+    "decision": "DEFECT_NEEDS_PHOTOS",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_created + draft_reply (needs human)"
+  },
+  "E05": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "draft_reply"
+  },
+  "E06": {
+    "intent": "other",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "log_only"
+  },
+  "E07": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": true,
+    "ticket": false,
+    "action": "draft_reply (needs human)"
+  },
+  "E08": {
+    "intent": "complaint",
+    "decision": "DEFECT_NEEDS_PHOTOS",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_created + draft_reply (needs human)"
+  },
+  "E09": {
+    "intent": "product_query",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "draft_reply"
+  },
+  "E10": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "draft_reply"
+  },
+  "E11": {
+    "intent": "return_refund",
+    "decision": "RETURN_ELIGIBLE",
+    "needs_human": false,
+    "ticket": true,
+    "action": "ticket_created + draft_reply"
+  },
+  "E12": {
+    "intent": "return_refund",
+    "decision": "RETURN_NOT_ELIGIBLE_USED",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_created + draft_reply (needs human)"
+  },
+  "E13": {
+    "intent": "other",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": true,
+    "ticket": false,
+    "action": "log_only (needs human)"
+  },
+  "E14": {
+    "intent": "complaint",
+    "decision": "DEFECT_NEEDS_PHOTOS",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_created + draft_reply (needs human)"
+  },
+  "E15": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "draft_reply"
+  },
+  "E16": {
+    "intent": "return_refund",
+    "decision": "RETURN_NOT_ELIGIBLE_USED",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_created + draft_reply (needs human)"
+  },
+  "E17": {
+    "intent": "other",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "log_only"
+  },
+  "E18": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": true,
+    "ticket": false,
+    "action": "draft_reply (needs human)"
+  },
+  "E19": {
+    "intent": "return_refund",
+    "decision": "RETURN_ELIGIBLE",
+    "needs_human": false,
+    "ticket": true,
+    "action": "ticket_created + draft_reply"
+  },
+  "E20": {
+    "intent": "product_query",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": true,
+    "ticket": false,
+    "action": "draft_reply (needs human)"
+  },
+  "E21": {
+    "intent": "complaint",
+    "decision": "DEFECT_PENDING_VERIFICATION",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_updated + draft_reply (needs human)"
+  },
+  "E22": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": true,
+    "ticket": false,
+    "action": "draft_reply (needs human)"
+  },
+  "E23": {
+    "intent": "complaint",
+    "decision": "DEFECT_NEEDS_PHOTOS",
+    "needs_human": true,
+    "ticket": true,
+    "action": "ticket_created + draft_reply (needs human)"
+  },
+  "E24": {
+    "intent": "order_status",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": true,
+    "ticket": false,
+    "action": "draft_reply (needs human)"
+  },
+  "E25": {
+    "intent": "other",
+    "decision": "NOT_APPLICABLE",
+    "needs_human": false,
+    "ticket": false,
+    "action": "log_only"
+  }
+}
