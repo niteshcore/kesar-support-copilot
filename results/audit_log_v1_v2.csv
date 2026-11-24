@@ -1,0 +1,320 @@
+"email_id","received_at","from_email","intent","secondary_intent","order_id","language","sentiment","confidence","order_found","action_taken","needs_human","ticket_id","reply_draft","prompt_version","processed_at","error","notes","needs_human_reason","decision_code","tools_called","json_valid_first_try","approx_tokens","summary"
+"E01","2026-11-20T09:02:00+05:30","ananya.rao@example.com","order_status","","KC-1041","en","neutral","0.95","yes","draft_reply","FALSE","","Hi Ananya,
+
+Thanks — I can see your order KC-1041 for the Saffron Glow Face Serum. Your order was shipped via SwiftShip on 2026-11-17 and the estimated delivery date is 2026-11-21 (tracking: https://track.example.com/SS7781041).
+
+If you don’t receive it by tomorrow, or if the parcel arrives damaged, leaking, wrong or with missing items, please let us know. For damaged/wrong/missing items we ask customers to report within 48 hours of delivery and send photos — after verification we’ll arrange a free replacement or a full refund (your choice).
+
+If you need me to follow up with the courier or check anything else, I’m happy to help.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:44:38.327Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1353","Customer is inquiring about the delivery status of order KC-1041 for the Saffron Glow serum."
+"E03","2026-11-20T09:28:00+05:30","kavya.reddy@example.com","return_refund","","KC-1047","en","neutral","0.95","yes","ticket_created + draft_reply","FALSE","TKT-1047-E03","Hi Kavya —
+
+Thanks — I can help with that. I see your order KC-1047 (Rose Water Toner) was delivered on 16 Nov and is within our 7‑day return window. Since the bottle is sealed, it is eligible for return.
+
+Here’s what will happen next:
+- I’ll arrange a free reverse pickup from your delivery address (we usually collect within 2–3 business days).
+- After we receive and inspect the sealed item, we’ll refund the prepaid amount to your original payment method. Shipping charges are non‑refundable, so you can expect a refund of ₹899 (item price). The refund will be processed within 5–7 business days after the item passes our quality check.
+
+Please confirm that you’d like me to proceed and whether the pickup address should be the delivery address on the order (9 Jubilee Hills Road No. 36, Hyderabad, 500033). If you prefer a different pickup address, please reply with it.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:44:57.490Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1361","Customer wants to return a sealed Rose Water Toner (KC-1047) for a refund as it was a gift and the recipient already has one."
+"E07","2026-11-20T10:34:00+05:30","arjun.nair@example.com","order_status","","KC-1046","en","neutral","0.98","no (access_denied)","draft_reply","FALSE","","Hi Arjun,
+
+Thanks for writing — I can’t share or confirm order details because our records only allow us to disclose them to the person who placed the order (Meera). For privacy and security, we need the account-holder’s permission before we can provide tracking or address information.
+
+How you can proceed (quick options):
+- Ask Meera to email us from the address she used to place the order (or to forward the order confirmation email). Once we receive that, we can look up KC-1046 and send the tracking link and delivery address.
+- Or ask Meera to reply to you with the order confirmation she received (then you can share it with us), or to call our support with the order details.
+
+A few useful notes meanwhile:
+- A tracking link is emailed as soon as the order is dispatched. Orders are usually dispatched within 1–2 business days.
+- Delivery times after dispatch vary by location (metro cities ~2–4 business days; rest of India ~4–6 business days).
+- We cannot change the delivery address after the order has been dispatched.
+
+If Meera forwards the confirmation or contacts us directly, reply here or ask her to include KC-1046 and we’ll take it from there.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:45:17.542Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: access_denied (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1234","Customer requests tracking link and delivery address confirmation for order KC-1046."
+"E08","2026-11-20T10:52:00+05:30","riya.kapoor@example.com","complaint","return_refund","KC-1051","en","angry","0.98","yes","ticket_created + draft_reply","FALSE","TKT-1051-E08","Hi Riya — I’m really sorry this happened and thank you for telling us right away.
+
+I can see your order KC-1051 (2 x Sandalwood Body Lotion, total Rs 1,498) was delivered on 19 Nov — since you reported this within 48 hours, this is covered under our damaged-items policy.
+
+To get a full refund started immediately, please reply with:
+1) Photos of the damaged bottle(s) (close-up of the leak) and the outer box (showing packaging and any leakage).
+Once we receive the photos we will:
+- Arrange a free reverse pickup (usually within 2–3 business days) and verify the damage.
+- Process a full refund to your original payment method. For prepaid orders this refund is credited within 5–7 business days after our quality check completes.
+
+We’ll handle the pickup and refund — you don’t need to share any bank/OTP/CVV details. If you prefer a free replacement instead of a refund, tell us and we’ll arrange that instead.
+
+Again, I’m very sorry for the mess and inconvenience. Please send the photos and I’ll get this moving right away.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:45:36.662Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1547","Customer received order KC-1051 with a leaked Sandalwood lotion bottle, ruining the contents, and demands an immediate full refund, threatening social media action."
+"E12","2026-11-20T12:05:00+05:30","manish.gupta@example.com","return_refund","","KC-1055","en","negative","0.95","yes","ticket_created + draft_reply","FALSE","TKT-1055-E12","Hi Manish —
+
+Thanks for writing — I looked up your order KC-1055 (Saffron Glow Face Serum + Kumkumadi Night Oil, delivered 12 Nov, total Rs. 2,448).
+
+I’m sorry these didn’t suit your skin. Our return policy requires items to be returned within 7 days of delivery and only accepts unused, unopened products with seals intact. Because your order was delivered 8 days ago and the products have been used, we’re unable to process a refund.
+
+If you’re having a skin reaction, please stop using the products immediately, rinse the area with cool water, and consult a healthcare professional if symptoms persist. If you believe the items were damaged, leaking, or the wrong product, please send photos of the product and outer box (these issues must be reported within 48 hours of delivery) and I’ll escalate right away.
+
+I know this is disappointing — if you’d like, I can:
+- Share tips to reduce irritation or how to patch-test safely,
+- Suggest alternative Kesar products that may be gentler for your skin,
+- Note your feedback for product team consideration.
+
+Tell me which option you prefer and I’ll assist.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:45:58.037Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1590","Customer requests a refund for order KC-1055 because the products did not suit their skin."
+"E16","2026-11-20T13:44:00+05:30","aditya.verma@example.com","return_refund","complaint","KC-1049","en","negative","0.98","yes","ticket_created + draft_reply","FALSE","TKT-1049-E16","Hi Aditya,
+
+Thanks for writing — I’m sorry the Saffron Glow serum hasn’t met your expectations.
+
+I checked your order KC-1049 (delivered 2026-11-05). Our returns policy accepts returns only within 7 days of delivery and requires items to be unused, unopened and with the seal intact. Because this bottle was used for two weeks (and is past the 7‑day window), we can’t process a return or refund in this case.
+
+A few product notes that may help: Saffron Glow Serum (Saffron + Vitamin C) is formulated for twice‑daily use after cleansing. Many customers see clearer glow over several weeks — for best results continue AM/PM and use sun protection during the day. If you’d like, tell me how you’ve been using it (amount, frequency, other products in your routine) and I’ll suggest adjustments.
+
+If the product was damaged, wrong, or missing on delivery, please let me know and I’ll initiate a refund/pickup right away.
+
+Sorry I don’t have better news about a refund, and I’m happy to help with routine tips or troubleshooting — just reply with details.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:46:18.298Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1642","Customer is unhappy with the Saffron Glow serum's performance and requests a refund for order KC-1049."
+"E18","2026-11-20T14:30:00+05:30","rahul.b@example.com","order_status","","","en","angry","0.9","no (no_match)","draft_reply","FALSE","","Hi Rahul —
+
+Sorry for the wait — I can help check this for you, but I don’t see any order under your email. Could you please reply with your order ID (format like KC-1234) or forward the order confirmation/receipt? If you don’t have the ID, sending the phone number used to place the order will also help.
+
+A few quick notes while you look:
+- Orders are dispatched within 1–2 business days. After dispatch, delivery is usually 2–4 business days to metro cities and 4–6 business days elsewhere. Remote regions can take 6–8 business days.
+- A tracking link is sent by email as soon as your order is dispatched — please check your inbox and spam/junk folder.
+- If your order hasn’t dispatched yet it can still be cancelled; once dispatched we’ll need to wait for delivery and then process a return if needed.
+
+Reply with the order ID or order confirmation and I’ll check the status right away.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:46:32.988Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: no_match (by sender email) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1025","Customer is angry about a delayed order and wants to know its status."
+"E19","2026-11-20T14:52:00+05:30","farhan.sheikh@example.com","return_refund","","KC-1050","en","neutral","0.98","yes","ticket_created + draft_reply","FALSE","TKT-1050-E19","Hi Farhan —
+
+Thanks — I’ve checked your order KC-1050. It was delivered on 17 Nov, so you’re within our 7-day return window. Because both the Kumkumadi Night Oil (15 ml) and Aloe Calm Gel (150 g) are unopened with seals intact, they are eligible for return.
+
+Next steps:
+- If you’d like to proceed, reply “Please pick up” and we’ll arrange a free reverse pickup (usually within 2–3 business days). Tell us if you have any preferred pickup date/time.
+- Refund for COD orders is issued via UPI or bank transfer after the returned items pass our quality check. We’ll ask you to share your UPI ID (or account name, account number and IFSC) once pickup is complete.
+- A quick note on amounts: you paid ₹1,697 (items ₹1,648 + ₹49 COD fee). The refundable amount for the returned unopened items will be ₹1,648. The ₹49 COD handling fee is non-refundable per our policy.
+- Once we receive and inspect the items, refund will be processed within 5–7 business days.
+
+Shall I go ahead and schedule the pickup?
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:46:53.484Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1392","Customer wants to return unopened Kumkumadi oil and aloe gel from order KC-1050 and asks about the refund process for a cash on delivery payment."
+"E20","2026-11-20T15:14:00+05:30","lakshmi.n@example.com","product_query","","","en","neutral","0.98","no (no_match)","draft_reply","FALSE","","Hi Lakshmi —
+
+Thanks for writing. I’m sorry you’ve been dealing with eczema — that can be so frustrating.
+
+A few important points about our Kumkumadi Night Oil:
+- It’s a cosmetic oil (not a medicine) and we cannot claim it will cure eczema. For medical advice, please consult a dermatologist.
+- Our Kumkumadi Night Oil is traditionally formulated for normal-to-dry skin; it’s not recommended for very oily or acne-prone skin. If your skin is inflamed or you’re on any prescription treatments, check with your doctor first.
+- Always do a 24-hour patch test on the inner forearm before using on your face. If you get any redness, itching or burning, stop use and consult a doctor.
+- Some people see cosmetic improvement in skin texture and glow over a few weeks, but results vary and it may not help inflammatory/medical conditions like eczema.
+
+If you’d like a gentler, soothing option while you consult your dermatologist, our Aloe Calm Gel is formulated to be soothing and suitable for all skin types.
+
+I checked for any existing orders under your email and couldn’t find one. If you want product recommendations, help placing an order, or need more details, tell me your skin type (dry/normal/oily), whether you have active inflamed patches, and any allergies or current treatments — I’ll suggest the best next steps.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:47:13.916Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: no_match (by sender email) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1515","Customer asks if Kumkumadi Night Oil can cure eczema and how long it would take."
+"E21","2026-11-20T15:55:00+05:30","tanvi.desai@example.com","complaint","","KC-1052","en","negative","0.98","yes","ticket_created + draft_reply","FALSE","TKT-1052-E21","Hi Tanvi —
+
+Thanks — and I'm sorry about the cracked jar. I can confirm I found your order KC-1052 (delivered 19 Nov) and I can see the photos you attached.
+
+This is covered by our damaged-items policy (reports with photos within 48 hours). We'll arrange a free replacement (as you requested). I'll verify the photos now and escalate this with our packing team — we'll dispatch the replacement at no extra charge and send you the new tracking link as soon as it's booked.
+
+Next steps (what to expect):
+- I’ve recorded your claim and attached your photos to the case.
+- We’ll process and approve the replacement within 1 business day.
+- Once dispatched, you’ll receive the courier name and tracking link by email. If you prefer a pickup of the damaged jar, tell me and I’ll arrange it; otherwise you may dispose of it.
+
+If you want the refund instead at any point, let me know; otherwise I’ll proceed with the replacement.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:47:34.702Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1414","Customer follows up on a damaged Ubtan jar in order KC-1052, attaching photos and requesting a replacement instead of a refund."
+"E22","2026-11-20T16:20:00+05:30","neha.kulkarni@example.com","order_status","","KC-1099","en","neutral","0.98","no (not_found)","draft_reply","FALSE","","Hi Neha,
+
+Thanks for writing in — I looked up order KC-1099 but our system shows no order with that ID, and there’s no order tied to your email address.
+
+Could you please confirm one of the following so I can check this right away:
+- The order ID (please re-check the confirmation email), or
+- The phone number used at checkout, or
+- A screenshot of your order confirmation / payment receipt (if available).
+
+A few helpful notes while you check:
+- We normally dispatch orders within 1–2 business days. After dispatch, delivery is 2–4 business days for metro cities and 4–6 business days for the rest of India. You’ll receive a tracking link by email as soon as the order ships.
+- If the order was placed as a guest with a different email or phone number, please share those details.
+
+Once you send the info above I’ll locate your order and update you on the status right away.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:47:55.055Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: not_found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq, get_order","FALSE","1144","Customer is requesting an update on the status of their order KC-1099 for an Ubtan face pack, as they have not received any information since ordering last week."
+"E24","2026-11-20T17:15:00+05:30","deepak.rao@example.com","order_status","","KC-1045","en","negative","0.95","yes","draft_reply","FALSE","","Hi Deepak,
+
+Thanks for writing in — I’m sorry for the confusion.
+
+I checked your order KC-1045. The Sandalwood Body Lotion was cancelled on 16 Nov because it was out of stock at our warehouse, so it was never dispatched and therefore no tracking link was generated. Your prepaid payment (total ₹828) was refunded to the original payment method on 16 Nov; refunds are processed within 5–7 business days from the cancellation, per our policy.
+
+If you don’t see the refund in your account by 27 Nov, or if you’d like we can notify you when the lotion is back in stock and help place a new order. Reply to this email or call us and I’ll assist.
+
+Warm regards,
+Team Kesar","v1","2026-11-24T21:48:08.811Z","","NOT_COMPUTED: v1 baseline: eligibility left to the LLM | order lookup: found (by order id) | deterministic repair: stripped non-JSON wrapper","","NOT_COMPUTED","get_order, search_faq","FALSE","1240","Customer is inquiring about order KC-1045, which has not been received and is missing a tracking link after 5 days."
+"E01","2026-11-20T09:02:00+05:30","ananya.rao@example.com","order_status","","KC-1041","en","neutral","0.95","yes","draft_reply","FALSE","","Hi Ananya,
+
+Your order KC-1041 was shipped on 2026-11-17 with SwiftShip and is estimated to be delivered on 2026-11-21. You can track it here: https://track.example.com/SS7781041
+
+If you need anything else, I’ll help check the status.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:49:49.183Z","","order lookup: found (by order id)","","NOT_APPLICABLE","get_order","TRUE","2760","Customer asking for delivery date of order KC-1041, placed on the 15th."
+"E02","2026-11-20T09:15:00+05:30","ishita.banerjee@example.com","product_query","","","en","neutral","0.95","no (no_match)","draft_reply","FALSE","","Hello Ishita,
+
+Our Saffron Glow Face Serum is lightweight and non-greasy — the FAQ lists it as suitable for all skin types, including oily skin — and it is marked as vegan. As a reminder, our products are cosmetics (not medicines) and we recommend a patch test on the inner forearm for 24 hours before first use; for any skin condition, pregnancy or allergies please consult a dermatologist.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:50:05.905Z","","order lookup: no_match (by sender email)","","NOT_APPLICABLE","search_faq, search_faq","TRUE","3671","Customer asking if Saffron Glow Face Serum is suitable for oily skin and if it is vegan."
+"E03","2026-11-20T09:28:00+05:30","kavya.reddy@example.com","return_refund","","KC-1047","en","neutral","0.95","yes","ticket_created + draft_reply","FALSE","TKT-1047-E03","Hi Kavya,
+
+Thanks — we can take this return. Because the item is unopened with the seal intact and within 7 days of delivery, we will arrange a free reverse pickup (this usually happens within 2–3 business days). If you return all items from order KC-1047, the refundable amount is INR 899; the INR 79 shipping fee is not refundable. Refund for this prepaid order will be made to your original payment method within 5–7 business days after the returned item passes our quality check.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:50:25.036Z","","RETURN_ELIGIBLE: Eligible: 4 day(s) since delivery, customer states unopened. Refundable if all items come back: INR 899 (INR 79 shipping/COD fee not refundable). Payment: prepaid. | order lookup: found (by order id)","","RETURN_ELIGIBLE","get_order, search_faq, search_faq","TRUE","3658","Customer wants to return an unopened Rose Water Toner (KC-1047) because it was a gift and the recipient already has one, requesting a refund."
+"E04","2026-11-20T09:41:00+05:30","tanvi.desai@example.com","complaint","","KC-1052","en","negative","0.95","yes","ticket_created + draft_reply (needs human)","TRUE","TKT-1052-E04","Hi Tanvi,
+
+I’m really sorry your Ubtan Face Pack arrived cracked — I can understand how frustrating that is, especially with plans this weekend. Our records show order KC-1052 was delivered on 2026-11-19; could you please reply with clear photos of the damaged product and the outer box (showing the packaging and any shipping labels)? Per our policy, once we verify the damage with your photos we can offer a free replacement or a full refund (your choice). If we need anything further a team member will follow up within 24 business hours.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:50:48.663Z","","DEFECT_NEEDS_PHOTOS: damaged reported within 48h (1 day(s) after delivery) but no photos attached. | order lookup: found (by order id)","complaint: needs human resolution","DEFECT_NEEDS_PHOTOS","get_order, search_faq","TRUE","3317","Customer received order KC-1052 with a cracked Ubtan Face Pack jar and spilled powder."
+"E05","2026-11-20T10:03:00+05:30","priya.sharma@example.com","order_status","","KC-1043","hinglish","negative","0.95","yes","draft_reply","FALSE","","Hi Priya,
+
+Aapka order KC-1043 shipped hai via SwiftShip (shipped on 2026-11-18). Estimated delivery 2026-11-23 hai — aap tracking yahan dekh sakti hain: https://track.example.com/SS7781043. Payment prepaid hai, isliye delivery par koi amount payable nahi hoga.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:51:04.529Z","","order lookup: found (by order id)","","NOT_APPLICABLE","get_order","TRUE","2857","Customer asking for delivery date of order KC-1043, which was placed on Nov 16 and shows as shipped but not delivered yet. Customer is traveling soon."
+"E06","2026-11-20T10:17:00+05:30","promo@seo-rankers-pro.example","other","","","en","neutral","0.98","n/a","log_only","FALSE","","","v2","2026-11-24T21:51:12.688Z","","category: spam","","NOT_APPLICABLE","","TRUE","1390","Promotional email offering SEO services for Kesar & Co.'s website with a guaranteed #1 Google ranking."
+"E07","2026-11-20T10:34:00+05:30","arjun.nair@example.com","order_status","","KC-1046","en","neutral","0.95","no (access_denied)","draft_reply (needs human)","TRUE","","Hi Arjun,
+
+For privacy we can only share order details with the email address used to place the order (Meera’s email). Please ask Meera to write to us from that email address with the order ID, or have her forward this request — once we hear from the account holder we’ll send the tracking link and delivery details right away.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:51:29.209Z","","order lookup: access_denied (by order id)","privacy: sender does not match order owner | agent: privacy — sender email does not match order holder; cannot share details","NOT_APPLICABLE","","TRUE","2704","Customer asking for tracking link and delivery address for order KC-1046."
+"E08","2026-11-20T10:52:00+05:30","riya.kapoor@example.com","complaint","return_refund","KC-1051","en","angry","0.98","yes","ticket_created + draft_reply (needs human)","TRUE","TKT-1051-E08","Hi Riya,
+
+I’m very sorry your Sandalwood lotion leaked and ruined the items in order KC-1051 (delivered 19 Nov, total Rs 1,498). Please reply to this email with clear photos of the damaged product and the outer box so we can verify what happened — we couldn’t find any photos attached.
+
+Per our policy, after we verify the damage we’ll offer a free replacement or a full refund (your choice); for prepaid orders refunds are returned to the original payment method within 5–7 business days after the quality check is complete. A team member will follow up within 24 business hours if we need anything else.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:51:49.758Z","","DEFECT_NEEDS_PHOTOS: leaking reported within 48h (1 day(s) after delivery) but no photos attached. | order lookup: found (by order id)","angry customer | complaint: needs human resolution","DEFECT_NEEDS_PHOTOS","get_order, search_faq","TRUE","3468","Customer received order KC-1051 with a leaking Sandalwood lotion bottle, ruining the contents and other items. Demands a full refund and threatens social media posts."
+"E09","2026-11-20T11:10:00+05:30","bhaskar.das@example.com","product_query","","","hi","neutral","0.95","no (no_match)","draft_reply","FALSE","","नमस्ते भास्कर,
+
+Bridal Glow Kit का ऑर्डर आम तौर पर 1–2 कार्यदिवसों में डिस्पैच होता है; उत्तर‑पूर्व (गुवाहाटी) में डिस्पैच के बाद डिलीवरी में 6–8 कार्यदिवस लगने की सूचना है। COD उपलब्ध है जब ऑर्डर ₹5,000 तक हो, और COD पर ₹49 हैंडलिंग शुल्क लागू होता है; ₹999 से ऊपर के ऑर्डर पर शिपिंग फ्री है, अन्यथा शिपिंग चार्ज ₹79 है। अगर आप ऑर्डर करने में मदद चाहते हैं याकुछ और पूछना हो तो बताइए।
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:52:06.746Z","","order lookup: no_match (by sender email)","","NOT_APPLICABLE","search_faq, search_faq","TRUE","3266","Customer asks about delivery time for Bridal Glow Kit to Guwahati and Cash on Delivery (COD) availability before placing an order."
+"E10","2026-11-20T11:26:00+05:30","vikram.singh@example.com","order_status","","KC-1044","en","neutral","0.95","yes","draft_reply","FALSE","","Hello Vikram,
+
+Your order KC-1044 for two Bhringraj Hair Oil (200 ml) has been shipped via BharatExpress on 2026-11-18; the estimated delivery date is 2026-11-25. You can track it here: https://track.example.com/BX5521044. This was a prepaid order (total ₹1298); if you need anything else, I can check further.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:52:21.132Z","","order lookup: found (by sender email)","","NOT_APPLICABLE","get_order","TRUE","2848","Customer asking for the status of an order for two bottles of Bhringraj hair oil that has not been received; no order ID provided."
+"E11","2026-11-20T11:48:00+05:30","sneha.joshi@example.com","return_refund","","KC-1048","en","neutral","0.98","yes","ticket_created + draft_reply","FALSE","TKT-1048-E11","Hi Sneha,
+
+Thanks — we can take this return. As the Bridal Glow Kit was delivered on 15 Nov and is unopened with seals intact, we’ll arrange a free reverse pickup (within 2–3 business days) — our team will contact you shortly to confirm the pickup slot. Once we receive the complete kit and it passes our quality check, the prepaid amount of INR 3499 will be refunded to your original payment method within 5–7 business days.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:52:40.617Z","","RETURN_ELIGIBLE: Eligible: 5 day(s) since delivery, customer states unopened. Refundable if all items come back: INR 3499. Payment: prepaid. | order lookup: found (by order id)","","RETURN_ELIGIBLE","get_order, search_faq, search_faq","TRUE","3643","Customer wants to return unopened Bridal Glow Kit from order KC-1048 for a refund as wedding is postponed."
+"E12","2026-11-20T12:05:00+05:30","manish.gupta@example.com","return_refund","","KC-1055","en","neutral","0.95","yes","ticket_created + draft_reply (needs human)","TRUE","TKT-1055-E12","Hi Manish,
+
+I’m sorry — we can’t refund order KC-1055 because our returns policy requires items to be returned within 7 days of delivery and only if they are unused, unopened and with the seal intact; our records show delivery was 8 days ago and the products were used. I understand this is disappointing and I'm sorry for the inconvenience.
+
+If you'd like help with product usage guidance or to raise another concern, reply and we’ll assist.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:52:58.080Z","","RETURN_NOT_ELIGIBLE_USED: Not eligible: the product has been opened/used (hygiene rule) and it is 8 days since delivery (limit 7). | order lookup: found (by order id)","possible prompt injection in email | decision RETURN_NOT_ELIGIBLE_USED needs human review","RETURN_NOT_ELIGIBLE_USED","get_order, search_faq","TRUE","3468","Customer wants a refund for order KC-1055 because products didn't suit their skin after use."
+"E13","2026-11-20T12:31:00+05:30","accounts@brightdesigns.example","other","","","en","neutral","0.95","n/a","log_only (needs human)","TRUE","","","v2","2026-11-24T21:53:07.130Z","","category: admin_request","""other"" email that still needs a person to answer","NOT_APPLICABLE","","TRUE","1389","Customer from Bright Designs requests a GST invoice for a past purchase for their finance team, providing their GSTIN."
+"E14","2026-11-20T12:57:00+05:30","karan.malhotra@example.com","complaint","","KC-1053","en","neutral","0.98","yes","ticket_created + draft_reply (needs human)","TRUE","TKT-1053-E14","Hi Karan,
+
+I’m very sorry you received Bhringraj Hair Oil instead of your 2 Ubtan Face Packs from order KC-1053 (delivered 2026-11-19). Please reply to this email with clear photos of the product and the outer box so we can verify the issue — you reported this within our 48-hour window. After we verify, we will either arrange a free pickup of the wrong items and send the correct Ubtan Face Packs, or issue a full refund if you prefer (you’ll choose which after verification). A team member will follow up within 24 business hours after we receive your photos.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:53:25.253Z","","DEFECT_NEEDS_PHOTOS: wrong_item reported within 48h (1 day(s) after delivery) but no photos attached. | order lookup: found (by order id)","complaint: needs human resolution","DEFECT_NEEDS_PHOTOS","get_order, search_faq","TRUE","3304","Customer received wrong items (Bhringraj Hair Oil instead of Ubtan Face Packs) for order KC-1053 and requests correct items."
+"E15","2026-11-20T13:20:00+05:30","rohit.mehta@example.com","order_status","","KC-1042","en","neutral","0.95","yes","draft_reply","FALSE","","Hi Rohit,
+
+Your order KC-1042 is out for delivery with BharatExpress and the estimated delivery date is 2026-11-20 (today). You can track it here: https://track.example.com/BX5521042. As this is a COD order, the amount payable on delivery is ₹1,897.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:53:38.979Z","","order lookup: found (by order id)","","NOT_APPLICABLE","get_order","TRUE","2780","Customer asking for the delivery date of COD order KC-1042."
+"E16","2026-11-20T13:44:00+05:30","aditya.verma@example.com","return_refund","","KC-1049","en","negative","0.95","yes","ticket_created + draft_reply (needs human)","TRUE","TKT-1049-E16","Hi Aditya,
+
+I’m sorry the Saffron Glow serum didn’t meet your expectations. I checked order KC-1049 — it was delivered on 2026-11-05 (15 days ago). Our returns policy requires returns within 7 days of delivery and items must be unused, unopened and with the seal intact; opened/used products and requests after 7 days are not eligible for return or refund.
+
+If you’d like, I can note your feedback for the product team and a customer care member will follow up within 24 business hours to help with next steps.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:53:56.732Z","","RETURN_NOT_ELIGIBLE_USED: Not eligible: the product has been opened/used (hygiene rule) and it is 15 days since delivery (limit 7). | order lookup: found (by order id)","decision RETURN_NOT_ELIGIBLE_USED needs human review","RETURN_NOT_ELIGIBLE_USED","get_order, search_faq","TRUE","3311","Customer is unhappy with Saffron Glow serum performance after two weeks and requests a refund for order KC-1049."
+"E17","2026-11-20T14:09:00+05:30","collab@glowwithmira.example","other","","","en","positive","0.95","n/a","log_only","FALSE","","","v2","2026-11-24T21:54:05.001Z","","forward to partnerships@kesarandco.example (FAQ section 9) | category: partnership","","NOT_APPLICABLE","","TRUE","1413","Skincare creator Mira Kapadia with 250K followers proposes a paid collaboration featuring the Bridal Glow Kit and asks who to contact."
+"E18","2026-11-20T14:30:00+05:30","rahul.b@example.com","order_status","","","en","negative","0.95","no (no_match)","draft_reply (needs human)","TRUE","","Hi Rahul,
+
+I can’t find any order under this email — please send your order ID (format KC-1234) and the email used at checkout so I can look it up. Once you share those details a team member will check the status and get back to you within 24 business hours.
+
+Sorry for the wait — we’ll sort this quickly.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:54:21.990Z","","order lookup: no_match (by sender email)","guardrail: order ID not from this email: KC-1234","NOT_APPLICABLE","","TRUE","2523","Customer is asking for the status of their order, expressing frustration about the wait."
+"E19","2026-11-20T14:52:00+05:30","farhan.sheikh@example.com","return_refund","","KC-1050","en","neutral","0.95","yes","ticket_created + draft_reply","FALSE","TKT-1050-E19","Hi Farhan,
+
+Thanks — I can confirm both the Kumkumadi Night Oil (15 ml) and Aloe Calm Gel (150 g) are eligible for return as unopened items within 7 days. We will arrange a free reverse pickup within 2–3 business days; once the pickup is complete and the items pass our quality check, we will issue your refund via UPI or bank transfer (we will ask you for the UPI ID or bank details after pickup). The refundable amount for returning all items is INR 1648; the COD handling fee of INR 49 is not refundable. A member of our team will follow up with the pickup details within 24 business hours.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:54:39.996Z","","RETURN_ELIGIBLE: Eligible: 3 day(s) since delivery, customer states unopened. Refundable if all items come back: INR 1648 (INR 49 shipping/COD fee not refundable). Payment: cod. | order lookup: found (by order id)","","RETURN_ELIGIBLE","get_order, search_faq, search_faq","TRUE","3721","Customer wants to return unopened Kumkumadi oil and aloe gel from order KC-1050, asking about the return process and cash refund."
+"E20","2026-11-20T15:14:00+05:30","lakshmi.n@example.com","product_query","","","en","neutral","0.95","no (no_match)","draft_reply (needs human)","TRUE","","Hi Lakshmi,
+
+Our Kumkumadi Night Oil is a cosmetic product, not a medicine, so we cannot say it will cure eczema. We recommend a 24-hour patch test on your inner forearm before use, and note the oil is formulated for normal to dry skin (not recommended for very oily or acne-prone skin). For an existing skin condition like eczema you should consult a dermatologist or doctor before trying the product; if you experience any reaction, stop use immediately and seek medical advice.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:54:56.152Z","","draft mentions cure/treat/heal wording: check it is a disclaimer, not a claim | order lookup: no_match (by sender email)","medical / skin-condition topic","NOT_APPLICABLE","search_faq","TRUE","3271","Customer asks if Kumkumadi Night Oil can cure eczema and how long it would take."
+"E21","2026-11-20T15:55:00+05:30","tanvi.desai@example.com","complaint","","KC-1052","en","neutral","0.98","yes","ticket_updated + draft_reply (needs human)","TRUE","TKT-1052-E04","Hi Tanvi,
+
+Thanks for the photos — we’ve received your complaint for order KC-1052 (delivered 2026-11-19). Because this was reported within 48 hours and you’ve attached photos, our team will verify the images and then arrange what our policy offers (a free replacement or a full refund); we’ve noted your preference for a replacement. A team member will follow up within 24 business hours with the next steps.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:55:17.569Z","","DEFECT_PENDING_VERIFICATION: damaged reported within 48h with photos. A human verifies the photos, then replacement/refund. Customer prefers: replacement. | order lookup: found (by order id)","complaint: needs human resolution","DEFECT_PENDING_VERIFICATION","get_order, search_faq","TRUE","3305","Customer following up on a damaged Ubtan jar from order KC-1052 and requesting a replacement."
+"E22","2026-11-20T16:20:00+05:30","neha.kulkarni@example.com","order_status","","KC-1099","en","neutral","0.95","no (not_found)","draft_reply (needs human)","TRUE","","Hi Neha,
+
+I couldn’t find an order under KC-1099 in our system — could you please re-check the order ID and the email address you used at checkout? A team member will look into this and get back to you within 24 business hours once you confirm the details.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:55:29.759Z","","order lookup: not_found (by order id)","order ID not found","NOT_APPLICABLE","","TRUE","2563","Customer asking for the status of order KC-1099."
+"E23","2026-11-20T16:47:00+05:30","pooja.nair@example.com","complaint","return_refund","KC-1054","en","negative","0.95","yes","ticket_created + draft_reply (needs human)","TRUE","TKT-1054-E23","Hi Pooja,
+
+I’m very sorry your Aloe Calm Gel was missing from KC-1054 — I understand this is frustrating. Please reply with clear photos of the product you received and the outer box (including the courier label); we need these to verify the missing item. Our policy is to verify against packing records and then offer a free replacement or a full refund (you chose refund), and for prepaid orders refunds are returned to the original payment method within 5–7 business days after we complete verification. I haven’t approved or processed a refund yet — we’ll proceed as soon as we receive and review the photos; a team member will follow up within 24 business hours if anything else is needed.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:55:51.046Z","","DEFECT_NEEDS_PHOTOS: missing_item reported within 48h (1 day(s) after delivery) but no photos attached. | order lookup: found (by order id)","complaint: needs human resolution","DEFECT_NEEDS_PHOTOS","get_order, search_faq","TRUE","3384","Customer reports that Aloe Calm Gel was missing from order KC-1054 and requests a refund for the missing item."
+"E24","2026-11-20T17:15:00+05:30","deepak.rao@example.com","order_status","","KC-1045","en","negative","0.95","yes","draft_reply (needs human)","TRUE","","Hi Deepak,
+
+Your order KC-1045 was cancelled on 2026-11-16 because it was ""Out of stock at warehouse"". The order total was INR 828 and a refund of INR 828 was initiated to your original payment method on 2026-11-16.
+
+If you’d like, reply and we’ll help suggest alternatives or place a new order.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:56:05.354Z","","order lookup: found (by order id)","order was cancelled and the customer seems unaware","NOT_APPLICABLE","get_order","TRUE","2810","Customer has not received order KC-1045 placed 5 days ago and is asking for a tracking link and status update."
+"E25","2026-11-20T17:48:00+05:30","simran.kaur@example.com","other","","","en","positive","0.98","n/a","log_only","FALSE","","","v2","2026-11-24T21:56:13.947Z","","category: feedback","","NOT_APPLICABLE","","TRUE","1357","Customer received aloe gel, is happy with the product and quick delivery, and thanked the brand for the handwritten note."
+"E18","2026-11-20T14:30:00+05:30","rahul.b@example.com","order_status","","","en","negative","0.95","no (no_match)","draft_reply (needs human)","TRUE","","Hi Rahul,
+
+I couldn’t find any order under this email address. Please reply with your order ID (format KC-1234) and the email used at checkout so I can look it up — once you send those we’ll check and get back to you within 24 business hours.
+
+Warm regards,
+Team Kesar","v2","2026-11-24T21:58:41.775Z","","order lookup: no_match (by sender email)","customer is chasing an order but none was found for this sender","NOT_APPLICABLE","get_order","TRUE","2546","Customer is asking for the status of their order, implying it has not arrived yet."

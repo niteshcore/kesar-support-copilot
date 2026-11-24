@@ -103,10 +103,12 @@ if (isReplyBranch) {
       if (!allowed.has(n)) violations.push('amount not found in order data or FAQ: ' + a);
     }
 
-    // 4. Order IDs: only the ones the customer wrote.
+    // 4. Order IDs: only the ones the customer wrote. KC-1234 is the format example our own brief
+    //    gives the agent ("format KC-1234"), so it is not treated as an invented ID.
     const ids = draft.match(/\bKC[-\s]?\d{4}\b/gi) || [];
     for (const id of ids) {
       const norm = extractOrderId(id);
+      if (norm === 'KC-1234') continue;
       if (!ctx.pre.order_ids_in_text.includes(norm) && norm !== ctx.lookup.order_id) violations.push('order ID not from this email: ' + id);
     }
 
@@ -124,6 +126,10 @@ if (isReplyBranch) {
       reasons.push('guardrail: ' + violations.join(' | '));
     }
   }
+
+  // Found in the v2 run (E18): the classifier gave a vague "Where is it???" 0.95 confidence, so the
+  // threshold alone did not catch it. A customer chasing an order we cannot find always goes to a person.
+  if (V2 && cls.intent === 'order_status' && ctx.lookup.status === 'no_match') reasons.push('customer is chasing an order but none was found for this sender');
 } else {
   if (cls.other_category === 'partnership') notes.push('forward to partnerships@kesarandco.example (FAQ section 9)');
   if (cls.other_category !== 'none') notes.push('category: ' + cls.other_category);

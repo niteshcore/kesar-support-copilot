@@ -218,6 +218,16 @@ check('a guessed order ID is removed', () => {
   assert.ok(r.audit.notes.includes('not present in email text'));
 });
 
+check('E18 with an overconfident classifier still needs a human, and the KC-1234 example is not flagged', () => {
+  const r = processEmail(emails.find((e) => e.id === 'E18'), {
+    llmText: JSON.stringify(Object.assign({}, expected.E18, { confidence: 0.95 })),
+    draft: 'Hi Rahul,\n\nPlease send your order ID (format KC-1234).\n\nWarm regards,\nTeam Kesar',
+  });
+  assert.strictEqual(r.audit.needs_human, 'TRUE');
+  assert.ok(r.audit.needs_human_reason.includes('none was found'), r.audit.needs_human_reason);
+  assert.ok(!r.audit.needs_human_reason.includes('KC-1234'), r.audit.needs_human_reason);
+});
+
 // guardrails on a bad draft
 check('guardrails catch an invented link, amount and approval', () => {
   const r = processEmail(emails.find((e) => e.id === 'E12'), {
