@@ -64,7 +64,7 @@ add('Config', 'n8n-nodes-base.set', 3.4, [220, 300], {
     assignments: [
       cfg('PROMPT_VERSION', 'v2', 'string'),
       cfg('CONFIDENCE_THRESHOLD', 0.75, 'number'),
-      cfg('GOOGLE_SHEET_ID', 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE', 'string'),
+      cfg('GOOGLE_SHEET_ID', '14uz7z-TBI9m4w1qoEyQqLWwFDD-tvAIICsP-F21Kygo', 'string'),
       cfg('ORDERS_URL', RAW + 'orders.json', 'string'),
       cfg('FAQ_URL', RAW + 'faq.md', 'string'),
       cfg('BRAND_VOICE_URL', RAW + 'brand_voice.md', 'string'),

@@ -7,7 +7,7 @@
 - **What I built:** an n8n workflow that takes one support email per webhook call, classifies it with an LLM into the required JSON, applies the business rules in code (order lookup, privacy, return eligibility, needs-human), lets an AI agent with two tools draft the reply, upserts a ticket for returns and complaints, and writes one audit row per email to Google Sheets.
 - **Platform and LLM:** n8n (TODO: Cloud trial / self-hosted, version) with Google Gemini Flash through the AI Studio free tier (TODO: exact model ID you selected). Classifier temperature 0, agent temperature 0.3.
 - **Time spent:** TODO hours.
-- **Links:** Google Sheet: TODO · Screen recording: TODO
+- **Links:** [Google Sheet](https://docs.google.com/spreadsheets/d/14uz7z-TBI9m4w1qoEyQqLWwFDD-tvAIICsP-F21Kygo/edit?usp=sharing) · Screen recording: TODO
 - **What works / what doesn't:** TODO: 3–4 honest lines after your v2 run, taken from `TEST_REPORT.md` sections 3 and 5.
 
 Design principle: **the LLM reads and writes; code decides.** Anything that would be costly to get wrong (who may see an order, whether a return is eligible, whether a human must look) is an explicit check in a Code node, so an email cannot talk the system out of it.
